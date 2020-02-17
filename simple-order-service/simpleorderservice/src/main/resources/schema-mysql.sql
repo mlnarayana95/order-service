@@ -1,0 +1,27 @@
+CREATE TABLE inventory(
+	inventory_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	description VARCHAR(255),
+	qty_unit_price DECIMAL(10, 2) NOT NULL,
+	qty_available INT(10) NOT NULL, 
+	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT NULL,
+	deleted_at DATETIME DEFAULT NULL
+)
+CREATE TABLE orders(
+	order_id int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	customer_email VARCHAR(255) NOT NULL,
+	order_status VARCHAR(255),
+	total_price DECIMAL(10) NOT NULL,
+	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at DATETIME DEFAULT NULL,
+	deleted_at DATETIME DEFAULT NULL
+);
+
+CREATE TABLE orders_line_items(
+	id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	order_id INT(10) NOT NULL,
+	inventory_id INT(10),
+	price DECIMAL(10,2),
+	qty_ordered INT(10)
+);
