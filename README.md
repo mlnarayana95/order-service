@@ -8,12 +8,17 @@ Steps to follow to run the application:
 
 2. Install Gradle to manage all the dependencies for building the application which is built from build.gradle 
 
-3. Available Endpoints are 
+3. Steps to run and test this application using docker. 
+   - Run the docker-compose command on docker-compose.yml file available in the root folder of the project repository. 
+   
+   - Hit http://localhost:8083/swagger-ui.html to find the Rest API Documentation 
+
+4. Available Endpoints are 
 
 ![Alt text](./simple-order-service/simpleorderservice/images/endpoints.PNG?raw=true "Optional Title")
 
-4. Inventory Model 
+5. Inventory Model 
 ![Alt text](./simple-order-service/simpleorderservice/images/inventoryModel.PNG?raw=true "Optional Title")
 
-5. Order Model
+6. Order Model
 ![Alt text](./simple-order-service/simpleorderservice/images/ordermodel.PNG?raw=true "Optional Title")
