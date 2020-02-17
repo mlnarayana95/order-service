@@ -1,34 +1,22 @@
-version: "3"
+
+version: '3'
+
 services:
-  order-jdbc:
-    image: simple-order-service:dev
-    ports:
-      - "8083:8083"
-    networks:
-      - simple-order-mysql
+  docker-mysql:
+    image: mysql:5.7
     environment:
-      - MYSQL_USER:"web_user"
-      - MYSQL_PASSWORD:"Password"
-      - MYSQL_DATABASE:"simple_order_service"
-    depends_on:
-      - mysqldb
- 
-  mysqldb:
-    image: mysql:8
+      - MYSQL_ROOT_PASSWORD=Password
+      - MYSQL_DATABASE=simple-order-service
+      - MYSQL_USER=web_user
+      - MYSQL_PASSWORD=Password
     ports:
       - 3306:3306
-    networks:
-      - simple-order-mysql
-    environment:
-      - MYSQL_USER:"web_user"
-      - MYSQL_PASSWORD:"Password"
-      - MYSQL_DATABASE:"simple_order_service" 
-    volumes:
-         - db_data:/var/lib/mysql
 
-volumes:
-    db_data: {}
-    
-networks:
-  simple-order-mysql: 
-  
+  app:
+    image: simple-order-service:dev
+    ports:
+       - 8083:8083
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/simple-order-service?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+       - docker-mysql
